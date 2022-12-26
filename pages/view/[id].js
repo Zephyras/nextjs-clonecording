@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Item from "../../src/components/item";
 import { Loader } from "semantic-ui-react"
-const Post = ({ item }) => {
+const Post = ({ item, name }) => {
   // const router = useRouter();
   // const { id } = router.query;
   // const [item, setItem] = useState({});
@@ -31,6 +31,7 @@ const Post = ({ item }) => {
             <title>{item.name}</title>
             <meta name="description" content={item.description}></meta>
           </Head>
+          {name} 환경 입니다.
           <Item item={item} />
         </>
       )}
@@ -49,6 +50,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       item: data,
+      name: process.env.name,
     },
   };
 }

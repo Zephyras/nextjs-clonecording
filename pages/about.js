@@ -20,10 +20,10 @@ export default function About() {
           icon='mail'
           content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}
         />
-        <List.Item 
-        icon="linkify" 
-        content={<a href="http://www.semantic-ui.com">semantic-ui.com</a>} />
-      
+        <List.Item
+          icon="linkify"
+          content={<a href="http://www.semantic-ui.com">semantic-ui.com</a>} />
+
       </List>
       <Header as="h3" style={{ paddingTop: 40 }} color="teal">
         문의 사항
