@@ -12,8 +12,8 @@ export default function ItemList({ list }) {
           {list.map(item => (
             // eslint-disable-next-line react/jsx-key
             <Grid.Column key={item.id}>
-              <Link href="/view/[id]" as = {`/view/${item.id}`}>
-              
+              {/* <Link href="/view/[id]" as = {`/view/${item.id}`}> */}
+              <Link href="/detail/[id]" as = {`/detail/${item.id}`}>
                 <div className={styles.wrap}>
                   <img 
                     src={item.image_link} 

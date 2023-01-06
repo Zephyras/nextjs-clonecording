@@ -5,21 +5,21 @@ import { useEffect, useState } from 'react'
 import ItemList from '../src/components/itemList';
 import { Header, Divider, Loader } from 'semantic-ui-react';
 import styles from '../styles/Home.module.css'
-export default function Home() {
-  const [list, setList] = useState([]);
-  const [isLoding, setIsLoading] = useState(true);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  function getData() {
-    Axios.get(API_URL).then((res) => {
-      console.log(res.data);
-      setList(res.data);
-      setIsLoading(false);
-    },);
-  }
+export default function Home({list}) {
+  // const [list, setList] = useState([]);
+  // const [isLoding, setIsLoading] = useState(true);
+  // const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  // function getData() {
+  //   Axios.get(API_URL).then((res) => {
+  //     console.log(res.data);
+  //     setList(res.data);
+  //     setIsLoading(false);
+  //   },);
+  // }
 
-  useEffect(() => {
-    getData();
-  }, );
+  // useEffect(() => {
+  //   getData();
+  // }, );
 
   return (
     <div>
@@ -28,12 +28,12 @@ export default function Home() {
         <meta name='description' content='코딩 앙마 홈입니다.'></meta>
       </Head>
 
-      {isLoding && (
+      {/* {isLoding && (
         <div style={{ padding: "300px 0" }}>
           <Loader inline="centered" active>Loading</Loader>
         </div>
       )}
-      {!isLoding && (
+      {!isLoding && ( */}
         <>
           <Header as="h3" style={{ paddingTop: 40 }}>
             베스트 상품
@@ -46,7 +46,18 @@ export default function Home() {
           <Divider />
           <ItemList list={list.slice(9)} />
         </>
-      )}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const apiUrl = process.env.apiUrl;
+  const res = await Axios.get(apiUrl);
+  const data = res.data;
+  return {
+   props: {
+      list: data,
+      nama: process.env.name,
+   },
+  };
 }
